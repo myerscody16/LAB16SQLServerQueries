@@ -1,0 +1,23 @@
+use Northwind
+SELECT * FROM Customers;
+SELECT DISTINCT Country FROM Customers;
+SELECT * FROM Customers WHERE CHARINDEX('Bl', CustomerID)>0;
+SELECT TOP 100 * FROM Orders;
+SELECT * FROM Customers WHERE PostalCode='1010' OR PostalCode='3012' OR PostalCode='12209' OR PostalCode='05023'
+SELECT * FROM Orders WHERE ShipRegion<>'NULL';
+SELECT * FROM Customers ORDER BY Country DESC, City DESC;
+INSERT INTO Customers(CustomerID,CompanyName,ContactName,ContactTitle,Address,City,Region,PostalCode,Country,Phone,Fax)
+Values('anID','SomeCompanyName','AContact','TheirTitle','ThisAddress','ThisCity','ThisRegion','45851','USA','3133133333','3132582586');
+SELECT * FROM Customers WHERE CustomerID='anID'; --this verifies the above INSERT worked
+UPDATE Orders SET ShipRegion='EuroZone' WHERE ShipCountry='France';
+DELETE FROM [dbo].[Order Details] WHERE Quantity=1;
+SELECT MAX(Quantity) FROM [dbo].[Order Details];
+SELECT MIN(Quantity) FROM [dbo].[Order Details];
+SELECT AVG(Quantity) FROM [dbo].[Order Details];
+SELECT DISTINCT OrderID AS orderID, MIN(Quantity) AS 'MIN', MAX(Quantity) AS 'MAX', AVG(Quantity) AS 'AVG' FROM [Order Details] GROUP BY OrderID;
+SELECT * From Orders WHERE OrderID='10290';
+SELECT * FROM Customers INNER JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+SELECT * FROM Customers LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+SELECT * FROM Customers RIGHT JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+SELECT FirstName FROM Employees WHERE ReportsTo IS NULL;
+SELECT FirstName FROM Employees WHERE ReportsTo=2;
